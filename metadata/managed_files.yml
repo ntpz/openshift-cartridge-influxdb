@@ -1,0 +1,3 @@
+processed_templates:
+- 'etc/*.erb'
+- 'env/*.erb'
