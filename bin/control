@@ -69,7 +69,7 @@ function status() {
 function tidy() {
   shopt -s dotglob
   client_message "Emptying logs in ${OPENSHIFT_LOG_DIR}..."
-  rm -rf ${OPENSHIFT_LOG_DIR}/*.log*
+  rm -rf ${OPENSHIFT_LOG_DIR}/influxdb.log*
   client_message 'Done.'
 }
 
