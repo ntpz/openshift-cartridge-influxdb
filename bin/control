@@ -16,8 +16,8 @@ function start() {
     return
   fi    
   
-  client_message 'Starting InfluxDB...'
-  nohup ${OPENSHIFT_DATA_DIR}.influxdb/bin/influxd run -config "$(OPENSHIFT_INFLUXDB_DIR)etc/influxdb.conf" \
+  client_message '\nStarting InfluxDB...'
+  nohup ${OPENSHIFT_DATA_DIR}.influxdb/bin/influxd run \
     |& /usr/bin/logshifter -tag influxdb # &
   # i=0
   # while ! is_running && [ $i -lt 60 ]; do
