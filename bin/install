@@ -1,0 +1,34 @@
+#!/bin/bash
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+# Download
+curl -L -o ${OPENSHIFT_DATA_DIR}tmp.tgz https://dl.influxdata.com/influxdb/releases/influxdb-${2}_linux_amd64.tar.gz
+
+# Create directories if necessary
+mkdir -p ${OPENSHIFT_DATA_DIR}.influxdb/bin
+mkdir -p ${OPENSHIFT_DATA_DIR}.influxdb/var/meta
+mkdir -p ${OPENSHIFT_DATA_DIR}.influxdb/var/data
+mkdir -p ${OPENSHIFT_DATA_DIR}.influxdb/var/wal
+
+
+# Copy just the influxd binary
+tar -xvzf ${OPENSHIFT_DATA_DIR}tmp.tgz --strip-components=1 -C ${OPENSHIFT_DATA_DIR}.influxdb influxdb-${2}-1/usr/bin/influxd
+
+# Remove downloaded archive
+rm ${OPENSHIFT_DATA_DIR}tmp.tgz
+
+# Create data directory if necessary
+mkdir -p ${OPENSHIFT_DATA_DIR}.influxdb/var
+
+# Add INFLUXDB_URL environment variable
+if [ -z "$OPENSHIFT_INFLUXDB_PROXY_PORT" ]; then
+  # Since $OPENSHIFT_INFLUXDB_PROXY_PORT is missing, cartridge must be running in the main gear
+  echo "http://$OPENSHIFT_INFLUXDB_IP:$OPENSHIFT_INFLUXDB_PORT/" > $OPENSHIFT_INFLUXDB_DIR/env/INFLUXDB_URL
+else
+  # Found $OPENSHIFT_INFLUXDB_PROXY_PORT, the cartridge is running in a separate gear
+  echo "http://$OPENSHIFT_GEAR_DNS:$OPENSHIFT_INFLUXDB_PROXY_PORT/" > $OPENSHIFT_INFLUXDB_DIR/env/INFLUXDB_URL
+fi
+
+# Output result
+client_result "InfluxDB ${2} installed - use \$INFLUXDB_URL environment variable to connect your application."

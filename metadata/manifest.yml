@@ -1,0 +1,33 @@
+Name: influxdb
+Description: InfluxDB 1.1.1.
+Version: '1.1.1'
+License: MIT
+Vendor:  InfluxData, Inc
+Website: https://www.influxdata.com/
+Display-Name: InfluxDB 1.1.1
+Cartridge-Short-Name: INFLUXDB
+Cartridge-Version: '0.0.1'
+Cartridge-Vendor: notapresent
+Source-Url: https://github.com/notapresent/openshift-cartridge-influxdb.git
+Categories:
+- service
+- database
+- nosql
+- embedded
+Help-Topics:
+  InfluxDB Manual: https://docs.influxdata.com/influxdb/v1.1/
+Provides:
+- influxdb
+Scaling:
+  Min: 1
+  Max: 1
+Publishes:
+  publish-influxdb-connection-info:
+    Type: ENV:NET_TCP:influxdb:connection-info
+Endpoints:
+- Private-IP-Name: IP
+  Private-Port-Name: PORT
+  Private-Port: 8086
+  Public-Port-Name: PROXY_PORT
+  Protocols:
+  - http
