@@ -184,12 +184,12 @@
 ###
 ### NOTE: This interface is deprecated as of 1.1.0 and will be removed in a future release.
 
-# [admin]
+[admin]
   # Determines whether the admin service is enabled.
-  # enabled = false
+  enabled = true
 
   # The default bind address used by the admin service.
-  # bind-address = ":8083"
+  bind-address = ""<%= ENV['OPENSHIFT_INFLUXDB_IP'] %>:8083"
 
   # Whether the admin service should use HTTPS.
   # https-enabled = false
