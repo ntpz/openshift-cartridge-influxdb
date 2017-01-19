@@ -2,6 +2,8 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
+return 0
+
 function is_running() {
   if [ ! -z "$(ps -ef | grep 'influxd run' | grep -v grep)" ]; then
     return 0
