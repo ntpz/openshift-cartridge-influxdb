@@ -1,7 +1,5 @@
 #!/bin/bash
 
-exit 0
-
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 function is_running() {
