@@ -2,7 +2,7 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-return 0
+exit 0
 
 function is_running() {
   if [ ! -z "$(ps -ef | grep 'influxd run' | grep -v grep)" ]; then
@@ -18,7 +18,7 @@ function start() {
     return
   fi    
   
-  client_message "\nStarting InfluxDB..."
+  client_message "Starting InfluxDB..."
   nohup ${OPENSHIFT_DATA_DIR}.influxdb/bin/influxd run -config ${OPENSHIFT_INFLUXDB_DIR}etc/influxdb.conf \
     |& /usr/bin/logshifter -tag influxdb # &
   # i=0
