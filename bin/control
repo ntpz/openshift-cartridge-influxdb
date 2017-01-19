@@ -16,7 +16,7 @@ function start() {
     return
   fi    
   
-  client_message '\nStarting InfluxDB...'
+  client_message "\nStarting InfluxDB..."
   nohup ${OPENSHIFT_DATA_DIR}.influxdb/bin/influxd run \
     |& /usr/bin/logshifter -tag influxdb # &
   # i=0
