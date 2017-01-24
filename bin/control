@@ -14,10 +14,10 @@ function start() {
   if is_running; then
     client_result 'InfluxDB is already running.'
     return
-  fi    
-  
+  fi
+
   client_message "Starting InfluxDB..."
-  nohup ${OPENSHIFT_DATA_DIR}.influxdb/bin/influxd run \
+  nohup ${OPENSHIFT_DATA_DIR}influxdb/bin/influxd run \
     |& /usr/bin/logshifter -tag influxdb &
   i=0
   while ! is_running && [ $i -lt 60 ]; do
