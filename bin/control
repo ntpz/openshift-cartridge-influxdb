@@ -76,7 +76,7 @@ function tidy() {
 
 function makedb() {
   $marker_file="${OPENSHIFT_DATA_DIR}influxdb/.default_db_created"
-  if [ ! -f $marker_file ]; then
+  if [ -f $marker_file ]; then
       client_message "Creating default database ${OPENSHIFT_APP_NAME}"
       curl -i -XPOST http://${OPENSHIFT_INFLUXDB_IP}:${OPENSHIFT_INFLUXDB_PORT}/query --data-urlencode "q=CREATE DATABASE '${OPENSHIFT_APP_NAME}'"
       touch $marker_file
