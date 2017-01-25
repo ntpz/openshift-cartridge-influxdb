@@ -1,0 +1,14 @@
+#!/bin/bash
+
+marker_file="${OPENSHIFT_DATA_DIR}influxdb/default_db_created"
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+if [ ! -f marker_file ]; then
+	curl -i -XPOST http://${OPENSHIFT_INFLUXDB_IP}:${OPENSHIFT_INFLUXDB_PORT}/query \
+	--data-urlencode "q=CREATE DATABASE '${OPENSHIFT_APP_NAME}'"
+	touch marker_file
+	client_result "Creating default database ${OPENSHIFT_APP_NAME}"
+else
+	client_message "Default database ${OPENSHIFT_APP_NAME} exists"
+fi  
