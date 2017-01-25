@@ -80,6 +80,8 @@ function makedb() {
       client_message "Creating default database ${OPENSHIFT_APP_NAME}"
       curl -i -XPOST http://${OPENSHIFT_INFLUXDB_IP}:${OPENSHIFT_INFLUXDB_PORT}/query --data-urlencode "q=CREATE DATABASE '${OPENSHIFT_APP_NAME}'"
       touch $marker_file
+  else
+    client_message "Default database exists"
   fi  
 }
 
