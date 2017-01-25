@@ -12,11 +12,11 @@ function is_running() {
 
 function start() {
   if is_running; then
-    client_message 'InfluxDB is already running.'
+    echo "InfluxDB is already running."
     return
   fi
 
-  client_message "Starting InfluxDB..."
+  echo "\nStarting InfluxDB cartridge"
   nohup ${OPENSHIFT_DATA_DIR}influxdb/bin/influxd run \
     |& /usr/bin/logshifter -tag influxdb &
   i=0
@@ -26,19 +26,17 @@ function start() {
   done
 
   if is_running; then
-    client_result 'InfluxdbDB started.'
-
+    client_result "InfluxdbDB started"
   else
-    warning 'Warning! Could not start InfluxDB!'
-    exit 1
+    error "Error! Could not start InfluxDB!" 1
   fi
 }
 
 function stop() {
   if ! is_running; then
-      client_result 'InfluxDB is already stopped.'
+    echo "InfluxDB is already stopped"
   else
-    client_message 'Stopping InfluxDB...'
+    echo "Stopping InfluxDB"
     kill "$(ps -ef | grep 'influxd run' | grep -v grep | awk '{ print $2 }')" > /dev/null 2>&1
     i=0
     while is_running && [ $i -lt 60 ]; do
@@ -46,10 +44,9 @@ function stop() {
       i=$(($i + 1))
     done
     if is_running; then
-      warning 'Warning! Could not stop InfluxDB!'
-      exit 1
+      error "Error! Could not stop InfluxDB!" 1
     else
-      client_result 'InfluxDB stopped.'
+      echo "InfluxDB stopped"
     fi
   fi
 }
@@ -61,17 +58,17 @@ function restart() {
 
 function status() {
   if is_running; then
-    client_result 'InfluxDB appears to be running.'
+    client_result "InfluxDB appears to be running"
   else
-    client_result 'InfluxDB appears to be stopped.'
+    client_result "InfluxDB appears to be stopped"
   fi
 }
 
 function tidy() {
   shopt -s dotglob
-  client_message "Emptying logs in ${OPENSHIFT_LOG_DIR}..."
+  client_message "Emptying logs in ${OPENSHIFT_LOG_DIR}"
   rm -rf ${OPENSHIFT_LOG_DIR}/influxdb.log*
-  client_message 'Done.'
+  client_message "Done."
 }
 
 case ${1} in
