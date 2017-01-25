@@ -12,7 +12,7 @@ function is_running() {
 
 function start() {
   if is_running; then
-    client_result 'InfluxDB is already running.'
+    client_message 'InfluxDB is already running.'
     return
   fi
 
@@ -29,7 +29,7 @@ function start() {
     client_result 'InfluxdbDB started.'
 
   else
-    client_result 'Warning! Could not start InfluxDB!'
+    warning 'Warning! Could not start InfluxDB!'
     exit 1
   fi
 }
@@ -46,7 +46,7 @@ function stop() {
       i=$(($i + 1))
     done
     if is_running; then
-      client_result 'Warning! Could not stop InfluxDB!'
+      warning 'Warning! Could not stop InfluxDB!'
       exit 1
     else
       client_result 'InfluxDB stopped.'
