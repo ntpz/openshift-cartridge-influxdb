@@ -12,7 +12,7 @@ mkdir -p ${OPENSHIFT_DATA_DIR}influxdb/var/data
 mkdir -p ${OPENSHIFT_DATA_DIR}influxdb/var/wal
 
 # Copy just the influxd binary
-tar -xvzf ${OPENSHIFT_DATA_DIR}tmp.tgz --strip-components=3 -C ${OPENSHIFT_DATA_DIR}influxdb ./influxdb-{2}-1/usr/bin/influxd
+tar -xvzf ${OPENSHIFT_DATA_DIR}tmp.tgz --strip-components=3 -C ${OPENSHIFT_DATA_DIR}influxdb ./influxdb-${2}-1/usr/bin/influxd
 
 # Remove downloaded archive
 rm ${OPENSHIFT_DATA_DIR}tmp.tgz
