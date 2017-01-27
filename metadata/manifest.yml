@@ -1,10 +1,10 @@
 Name: influxdb
-Description: InfluxDB 1.1.1.
-Version: '1.1.1'
+Description: InfluxDB 1.2.0.
+Version: '1.2.0'
 License: MIT
 Vendor:  InfluxData, Inc
 Website: https://www.influxdata.com/
-Display-Name: InfluxDB 1.1.1
+Display-Name: InfluxDB 1.2.0
 Cartridge-Short-Name: INFLUXDB
 Cartridge-Version: '0.0.3'
 Cartridge-Vendor: notapresent
