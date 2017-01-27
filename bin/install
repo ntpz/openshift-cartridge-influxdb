@@ -17,9 +17,6 @@ tar -xvzf ${OPENSHIFT_DATA_DIR}tmp.tgz --strip-components=3 -C ${OPENSHIFT_DATA_
 # Remove downloaded archive
 rm ${OPENSHIFT_DATA_DIR}tmp.tgz
 
-# Create database
-curl -i -XPOST http://${OPENSHIFT_INFLUXDB_IP}:${OPENSHIFT_INFLUXDB_PORT}/query --data-urlencode "q=CREATE DATABASE ${OPENSHIFT_APP_NAME}"
-
 # Add INFLUXDB_URL environment variable
 if [ -z "$OPENSHIFT_INFLUXDB_PROXY_PORT" ]; then
   # Since $OPENSHIFT_INFLUXDB_PROXY_PORT is missing, cartridge must be running in the main gear
