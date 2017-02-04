@@ -17,7 +17,7 @@ function start() {
   fi
 
   echo "\nStarting InfluxDB cartridge"
-  nohup ${OPENSHIFT_DATA_DIR}influxdb/bin/influxd run \
+  nohup ${OPENSHIFT_INFLUXDB_DIR}bin/influxd run \
     |& /usr/bin/logshifter -tag influxdb &
   i=0
   while ! is_running && [ $i -lt 60 ]; do
@@ -66,7 +66,7 @@ function status() {
 
 function tidy() {
   shopt -s dotglob
-  client_message "Emptying logs in ${OPENSHIFT_LOG_DIR}"
+  client_message "Emptying influxdb logs in ${OPENSHIFT_LOG_DIR}"
   rm -rf ${OPENSHIFT_LOG_DIR}/influxdb.log*
   client_message "Done."
 }

@@ -1,9 +1,9 @@
 [meta]
-  dir = "<%= ENV['OPENSHIFT_DATA_DIR'] %>influxdb/var/meta"
+  dir = "<%= ENV['OPENSHIFT_INFLUXDB_DIR'] %>data/meta"
 
 [data]
-  dir = "<%= ENV['OPENSHIFT_DATA_DIR'] %>influxdb/var/data"
-  wal-dir = "<%= ENV['OPENSHIFT_DATA_DIR'] %>influxdb/var/wal"
+  dir = "<%= ENV['OPENSHIFT_INFLUXDB_DIR'] %>data/databases"
+  wal-dir = "<%= ENV['OPENSHIFT_INFLUXDB_DIR'] %>data//wal"
 
   cache-max-memory-size = 268435456
   cache-snapshot-memory-size = 6553600
