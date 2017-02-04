@@ -6,8 +6,8 @@ source $OPENSHIFT_CARTRIDGE_SDK_BASH
 influx_client="$OPENSHIFT_INFLUXDB_DIR/bin/influx -host $OPENSHIFT_INFLUXDB_IP -port $OPENSHIFT_INFLUXDB_PORT "
 
 if [ ! -z `$influx_client -execute 'show databases' | grep "${OPENSHIFT_APP_NAME}"` ]; then
-        echo "Default database ${OPENSHIFT_APP_NAME} exists"
+        client_result "Default database ${OPENSHIFT_APP_NAME} exists"
 else
-    	echo "Default database ${OPENSHIFT_APP_NAME} not exists, creating"
+    	client_result "Default database ${OPENSHIFT_APP_NAME} not exists, creating"
         $influx_client -execute "CREATE DATABASE \"${OPENSHIFT_APP_NAME}\""
 fi
