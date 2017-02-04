@@ -6,7 +6,7 @@ Vendor:  InfluxData, Inc
 Website: https://www.influxdata.com/
 Display-Name: InfluxDB 1.2.0
 Cartridge-Short-Name: INFLUXDB
-Cartridge-Version: '0.1.0'
+Cartridge-Version: '0.1.1'
 Cartridge-Vendor: notapresent
 Source-Url: https://github.com/notapresent/openshift-cartridge-influxdb.git
 Categories:
@@ -15,7 +15,7 @@ Categories:
 - nosql
 - embedded
 Help-Topics:
-  InfluxDB Manual: https://docs.influxdata.com/influxdb/v1.1/
+  InfluxDB Manual: https://docs.influxdata.com/influxdb/v1.2/
 Provides:
 - influxdb
 Scaling:
