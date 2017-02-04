@@ -3,3 +3,4 @@
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 rm -rf $OPENSHIFT_LOG_DIR/influxdb.log*
+rm -f $OPENSHIFT_DATA_DIR/influx_history
