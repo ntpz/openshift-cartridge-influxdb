@@ -32,6 +32,11 @@ tar -xvzf tmp.tgz --strip-components=3 ./influxdb-${2}-1/usr/bin/{influxd,influx
 rm tmp.tgz
 
 
+# Create history file
+touch  "${OPENSHIFT_DATA_DIR}influx_history"
+ln -s  "${OPENSHIFT_DATA_DIR}influx_history" "${OPENSHIFT_HOMEDIR}.influx_history"
+
+
 echo "influxdb://$OPENSHIFT_INFLUXDB_DB_HOST:$OPENSHIFT_INFLUXDB_DB_PORT/" > $OPENSHIFT_INFLUXDB_DIR/env/OPENSHIFT_INFLUXDB_URL
 
 client_result ""
