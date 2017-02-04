@@ -45,3 +45,4 @@ client_result ""
 client_result "   Database Name: $OPENSHIFT_APP_NAME"
 client_result ""
 client_result 'Connection URL: influxdb://$OPENSHIFT_INFLUXDB_DB_HOST:$OPENSHIFT_INFLUXDB_DB_PORT/$OPENSHIFT_APP_NAME'
+client_result ""
