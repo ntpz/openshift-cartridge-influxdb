@@ -1,5 +1,10 @@
 #!/bin/bash
 
+case "$1" in
+  -v|--version)
+    version="$2"
+esac
+
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 
@@ -27,7 +32,7 @@ tar -xvzf tmp.tgz --strip-components=3 ./influxdb-${2}-1/usr/bin/{influxd,influx
 rm tmp.tgz
 
 
-echo "influxdb://$OPENSHIFT_INFLUXDB_DB_HOST:$OPENSHIFT_INFLUXDB_DB_PORT/" > $OPENSHIFT_INFLUXDB_DIR/env/OPENSHIFT_INFLUX_URL
+echo "influxdb://$OPENSHIFT_INFLUXDB_DB_HOST:$OPENSHIFT_INFLUXDB_DB_PORT/" > $OPENSHIFT_INFLUXDB_DIR/env/OPENSHIFT_INFLUXDB_URL
 
 client_result ""
 client_result "InfluxDB ${version} database added.  Please make note of these credentials:"
