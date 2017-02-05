@@ -25,7 +25,7 @@ Publishes:
   publish-influxdb-connection-info:
     Type: ENV:NET_TCP:influxdb:connection-info
 Endpoints:
-- Private-IP-Name: IP
+- Private-IP-Name: HOST
   Private-Port-Name: PORT
   Private-Port: 8086
   Public-Port-Name: PROXY_PORT
