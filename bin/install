@@ -37,11 +37,13 @@ touch  "${OPENSHIFT_DATA_DIR}influx_history"
 ln -s  "${OPENSHIFT_DATA_DIR}influx_history" "${OPENSHIFT_HOMEDIR}.influx_history"
 
 
-echo "influxdb://$OPENSHIFT_INFLUXDB_DB_HOST:$OPENSHIFT_INFLUXDB_DB_PORT/" > $OPENSHIFT_INFLUXDB_DIR/env/OPENSHIFT_INFLUXDB_URL
+echo "influxdb://$OPENSHIFT_INFLUXDB_IP:$OPENSHIFT_INFLUXDB_PORT/$OPENSHIFT_APP_NAME" > $OPENSHIFT_INFLUXDB_DIR/env/OPENSHIFT_INFLUXDB_URL
 
 client_result ""
 client_result "InfluxDB ${version} database added.  Please make note of these credentials:"
 client_result ""
+client_result "   Database Host: $OPENSHIFT_INFLUXDB_IP"
+client_result "   Database Port: $OPENSHIFT_INFLUXDB_PORT"
 client_result "   Database Name: $OPENSHIFT_APP_NAME"
 client_result ""
 client_result 'Connection URL: influxdb://$OPENSHIFT_INFLUXDB_IP:$OPENSHIFT_INFLUXDB_PORT/$OPENSHIFT_APP_NAME'
